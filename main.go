@@ -7,9 +7,9 @@ import (
 	"os"
 	"sync"
 
+	"github.com/uptempotech/chat_server_docker/proto"
 	"google.golang.org/grpc"
 	glog "google.golang.org/grpc/grpclog"
-	"uptempo.tech/docker_example/proto"
 )
 
 var grpcLog glog.LoggerV2

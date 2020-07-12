@@ -1,4 +1,4 @@
-module uptempo.tech/docker_example
+module github.com/uptempotech/chat_server_docker
 
 go 1.14
 
