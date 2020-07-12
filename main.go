@@ -18,6 +18,7 @@ func init() {
 	grpcLog = glog.NewLoggerV2(os.Stdout, os.Stdout, os.Stdout)
 }
 
+// Connection is structure for connection
 type Connection struct {
 	stream proto.Broadcast_CreateStreamServer
 	id     string
@@ -25,10 +26,12 @@ type Connection struct {
 	error  chan error
 }
 
+// Server defines the server
 type Server struct {
 	Connection []*Connection
 }
 
+// CreateStream is a function to create a stream
 func (s *Server) CreateStream(pconn *proto.Connect, stream proto.Broadcast_CreateStreamServer) error {
 	conn := &Connection{
 		stream: stream,
@@ -42,6 +45,7 @@ func (s *Server) CreateStream(pconn *proto.Connect, stream proto.Broadcast_Creat
 	return <-conn.error
 }
 
+// BroadcastMessage is a function to broadcast message to all connections
 func (s *Server) BroadcastMessage(ctx context.Context, msg *proto.Message) (*proto.Close, error) {
 	wait := sync.WaitGroup{}
 	done := make(chan int)
